@@ -1,26 +1,202 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { HiOutlineMicrophone } from "react-icons/hi";
+import { TbPlayerTrackNextFilled } from "react-icons/tb";
+import {
+  BiMicrophone,
+  BiMicrophoneOff,
+  BiPlay,
+  BiRightArrowAlt,
+} from "react-icons/bi";
+import { BsFillPlayCircleFill, BsMicMute } from "react-icons/bs";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import "./index.css";
 
-function App() {
+const items = [
+  [
+    {
+      label: "Abraham",
+      counts: 6,
+      correctAns: ["abraham"],
+    },
+    {
+      label: "Daniel",
+      counts: 3,
+      correctAns: ["daniel"],
+    },
+    {
+      label: "Moises",
+      counts: 4,
+      correctAns: ["moises"],
+    },
+    {
+      label: "Jesus",
+      counts: 7,
+      correctAns: ["jesus", "hesus"],
+    },
+    {
+      label: "Pablo",
+      counts: 9,
+      correctAns: ["pablo"],
+    },
+  ],
+  [
+    {
+      label: "Kawikaan",
+      counts: 6,
+      correctAns: ["kawikaan"],
+    },
+    {
+      label: "Daniel",
+      counts: 3,
+      correctAns: ["daniel"],
+    },
+    {
+      label: "Genesis",
+      counts: 4,
+      correctAns: ["genesis"],
+    },
+    {
+      label: "Marcos",
+      counts: 7,
+      correctAns: ["marcos"],
+    },
+  ],
+  [
+    {
+      label: "Maibigin",
+      counts: 6,
+      correctAns: ["love", "loving", "pag-ibig"],
+    },
+    {
+      label: "Daniel",
+      counts: 3,
+      correctAns: ["daniel"],
+    },
+    {
+      label: "Genesis",
+      counts: 4,
+      correctAns: ["genesis"],
+    },
+    {
+      label: "Marcos",
+      counts: 7,
+      correctAns: ["marcos"],
+    },
+    {
+      label: "Maibigin",
+      counts: 6,
+      correctAns: ["love", "loving", "pag-ibig"],
+    },
+    {
+      label: "Daniel",
+      counts: 3,
+      correctAns: ["daniel"],
+    },
+    {
+      label: "Genesis",
+      counts: 4,
+      correctAns: ["genesis"],
+    },
+    {
+      label: "Marcos",
+      counts: 7,
+      correctAns: ["marcos"],
+    },
+  ],
+];
+
+const VoiceRecognitionComponent: React.FC = () => {
+  const [disabled, setDisbled] = useState(true);
+  const [transcript, setTranscript] = useState<string>("");
+  const [level, setLevel] = useState(0);
+  const [current, setCurrent] = useState<any[]>([]);
+  const [answers, setAnswers] = useState<string[]>([]);
+
+  const { transcript: currentTranscript } = useSpeechRecognition();
+
+  useEffect(() => {
+    setTranscript(currentTranscript);
+  }, [currentTranscript]);
+
+  useEffect(() => {
+    setCurrent(items[level].sort((a, b) => b.counts - a.counts));
+  }, [level]);
+
+  const startListening = () => {
+    if (!disabled) {
+      setDisbled(true);
+    } else {
+      setDisbled(false);
+      SpeechRecognition.startListening();
+      setTranscript(currentTranscript);
+    }
+  };
+
+  const checkAnswer = () => {
+    setAnswers([...answers, transcript]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="main-container">
+      <h1>Family Feud</h1>
+      <div className="answer-main-container">
+        <div className="answer-container">
+          {current.slice(0, 4).map(({ label, counts, correctAns }) => {
+            const inAnswer = correctAns.some((ans: string) =>
+              answers.includes(ans)
+            );
+
+            return (
+              <div onClick={() => setAnswers([...answers, correctAns[0]])}>
+                {inAnswer ? (
+                  <>
+                    {label} <span className="counts">{counts}</span>
+                  </>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+        <div className="answer-container">
+          {current.slice(4).map(({ label, counts, correctAns }) => {
+            const inAnswer = correctAns.some((ans: string) =>
+              answers.includes(ans)
+            );
+
+            return (
+              <div onClick={() => setAnswers([...answers, correctAns[0]])}>
+                {inAnswer ? (
+                  <>
+                    {label} <span className="counts">{counts}</span>
+                  </>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="buttons">
+        <button onClick={startListening}>
+          {disabled ? <BiMicrophoneOff /> : <BiMicrophone />}
+        </button>
+        <button onClick={() => checkAnswer()}>
+          <BsFillPlayCircleFill />
+        </button>
+        <button
+          onClick={() => {
+            setAnswers([]);
+            setLevel(level + 1);
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <BiRightArrowAlt />
+        </button>
+        <div className="user-answer">{transcript}</div>
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+export default VoiceRecognitionComponent;
