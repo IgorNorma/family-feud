@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { HiOutlineMicrophone } from "react-icons/hi";
-import { TbPlayerTrackNextFilled } from "react-icons/tb";
-import {
-  BiMicrophone,
-  BiMicrophoneOff,
-  BiPlay,
-  BiRightArrowAlt,
-} from "react-icons/bi";
-import { BsFillPlayCircleFill, BsMicMute } from "react-icons/bs";
+import { IoClose } from "react-icons/io5";
+import { BiMicrophone, BiMicrophoneOff, BiRightArrowAlt } from "react-icons/bi";
+import { BsFillPlayCircleFill } from "react-icons/bs";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -113,6 +107,7 @@ const VoiceRecognitionComponent: React.FC = () => {
   const [level, setLevel] = useState(0);
   const [current, setCurrent] = useState<any[]>([]);
   const [answers, setAnswers] = useState<string[]>([]);
+  const [incorrect, setIncorrect] = useState(false);
 
   const { transcript: currentTranscript } = useSpeechRecognition();
 
@@ -135,11 +130,25 @@ const VoiceRecognitionComponent: React.FC = () => {
   };
 
   const checkAnswer = () => {
-    setAnswers([...answers, transcript]);
+    const correct = current.find(({ correctAns }) =>
+      correctAns.includes(transcript)
+    );
+    if (correct) {
+      setAnswers([...answers, transcript]);
+    } else {
+      setIncorrect(true);
+    }
   };
 
   return (
     <div className="main-container">
+      {incorrect ? (
+        <div className="modal" onClick={() => setIncorrect(false)}>
+          <div>
+            <IoClose />
+          </div>
+        </div>
+      ) : null}
       <h1>Family Feud</h1>
       <div className="answer-main-container">
         <div className="answer-container">
@@ -178,22 +187,35 @@ const VoiceRecognitionComponent: React.FC = () => {
         </div>
       </div>
 
-      <div className="buttons">
-        <button onClick={startListening}>
-          {disabled ? <BiMicrophoneOff /> : <BiMicrophone />}
-        </button>
-        <button onClick={() => checkAnswer()}>
-          <BsFillPlayCircleFill />
-        </button>
-        <button
-          onClick={() => {
-            setAnswers([]);
-            setLevel(level + 1);
-          }}
-        >
-          <BiRightArrowAlt />
-        </button>
-        <div className="user-answer">{transcript}</div>
+      <div className="footer">
+        <div className="buttons">
+          <button onClick={startListening}>
+            {disabled ? <BiMicrophoneOff /> : <BiMicrophone />}
+          </button>
+          <button onClick={() => checkAnswer()}>
+            <BsFillPlayCircleFill />
+          </button>
+          <button
+            onClick={() => {
+              setAnswers([]);
+              setLevel(level + 1);
+            }}
+          >
+            <BiRightArrowAlt />
+          </button>
+          <div className="user-answer">{transcript}</div>
+        </div>
+        <div className="score-board">
+          <div>
+            <p>TEAM A</p>
+            <input type="text" />
+          </div>
+          <div>VS</div>
+          <div>
+            <p>TEAM B</p>
+            <input type="text" />
+          </div>
+        </div>
       </div>
     </div>
   );
