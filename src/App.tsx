@@ -10,93 +10,103 @@ import "./index.css";
 const items = [
   [
     {
+      label: "Job",
+      counts: 9,
+      correctAns: ["hob", "job", "hub"],
+    },
+    {
+      label: "Abel",
+      counts: 3,
+      correctAns: ["abel", "abella"],
+    },
+    {
+      label: "Jesus",
+      counts: 4,
+      correctAns: ["jesus", "hesus"],
+    },
+    {
       label: "Abraham",
       counts: 6,
       correctAns: ["abraham"],
     },
     {
       label: "Daniel",
-      counts: 3,
+      counts: 5,
       correctAns: ["daniel"],
     },
     {
-      label: "Moises",
-      counts: 4,
-      correctAns: ["moises"],
+      label: "Pedro",
+      counts: 2,
+      correctAns: ["pedro"],
     },
     {
-      label: "Jesus",
-      counts: 7,
-      correctAns: ["jesus", "hesus"],
-    },
-    {
-      label: "Pablo",
-      counts: 9,
-      correctAns: ["pablo"],
+      label: "Jose",
+      counts: 1,
+      correctAns: ["jose"],
     },
   ],
   [
     {
       label: "Kawikaan",
-      counts: 6,
+      counts: 10,
       correctAns: ["kawikaan"],
     },
     {
+      label: "Awit",
+      counts: 8,
+      correctAns: ["awit"],
+    },
+    {
+      label: "Panaghoy",
+      counts: 2,
+      correctAns: ["panaghoy"],
+    },
+    {
+      label: "Esther",
+      counts: 4,
+      correctAns: ["esther"],
+    },
+    {
       label: "Daniel",
-      counts: 3,
+      counts: 5,
       correctAns: ["daniel"],
     },
     {
-      label: "Genesis",
-      counts: 4,
-      correctAns: ["genesis"],
-    },
-    {
       label: "Marcos",
-      counts: 7,
+      counts: 1,
       correctAns: ["marcos"],
     },
   ],
   [
     {
       label: "Maibigin",
+      counts: 11,
+      correctAns: ["love", "loving", "pag-ibig", "mapagmahal", "mahal"],
+    },
+    {
+      label: "Mapagmalasakit",
       counts: 6,
-      correctAns: ["love", "loving", "pag-ibig"],
+      correctAns: ["mapagmalasakit", "malasakit", "caring"],
     },
     {
-      label: "Daniel",
-      counts: 3,
-      correctAns: ["daniel"],
-    },
-    {
-      label: "Genesis",
-      counts: 4,
-      correctAns: ["genesis"],
-    },
-    {
-      label: "Marcos",
+      label: "Mapagpatawad",
       counts: 7,
-      correctAns: ["marcos"],
+      correctAns: ["mapagpatawad"],
     },
     {
-      label: "Maibigin",
-      counts: 6,
-      correctAns: ["love", "loving", "pag-ibig"],
+      label: "Makatarungan",
+      counts: 5,
+      correctAns: ["justice", "makatarungan", "katarungan", "patas"],
     },
     {
-      label: "Daniel",
+      label: "matulungin",
       counts: 3,
-      correctAns: ["daniel"],
+      correctAns: ["matulungin", "helpful"],
     },
     {
-      label: "Genesis",
-      counts: 4,
-      correctAns: ["genesis"],
-    },
-    {
-      label: "Marcos",
-      counts: 7,
-      correctAns: ["marcos"],
+      label: "makatuwiran",
+      counts: 2,
+      correctAns: ["makatwiran"],
     },
   ],
 ];
