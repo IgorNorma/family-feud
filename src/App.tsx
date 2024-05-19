@@ -1,150 +1,136 @@
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { BiMicrophone, BiMicrophoneOff, BiRightArrowAlt } from "react-icons/bi";
+import { BiRightArrowAlt } from "react-icons/bi";
 import { BsFillPlayCircleFill } from "react-icons/bs";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
 import "./index.css";
 
 const items = [
   [
     {
-      label: "Job",
-      counts: 9,
-      correctAns: ["hob", "job", "hub"],
+      label: "Hosea",
+      counts: 61,
+      correctAns: ["hosea"],
     },
     {
-      label: "Abel",
-      counts: 3,
-      correctAns: ["abel", "abella"],
+      label: "David",
+      counts: 14,
+      correctAns: ["david"],
+    },
+
+    {
+      label: "Solomon",
+      counts: 12,
+      correctAns: ["solomon"],
     },
     {
-      label: "Jesus",
-      counts: 4,
-      correctAns: ["jesus", "hesus"],
-    },
-    {
-      label: "Abraham",
+      label: "Zedekias",
       counts: 6,
-      correctAns: ["abraham"],
+      correctAns: ["zedekias"],
     },
     {
-      label: "Daniel",
-      counts: 5,
-      correctAns: ["daniel"],
+      label: "Hezekias",
+      counts: 4,
+      correctAns: ["hezekias"],
     },
+    {
+      label: "Josias",
+      counts: 2,
+      correctAns: ["josias"],
+    },
+    {
+      label: "Manases",
+      counts: 1,
+      correctAns: ["manases"],
+    },
+  ],
+  [
+    {
+      label: "India",
+      counts: 48,
+      correctAns: ["india"],
+    },
+    {
+      label: "Israel",
+      counts: 28,
+      correctAns: ["israel"],
+    },
+    {
+      label: "Egypt",
+      counts: 15,
+      correctAns: ["ehipto", "egypt"],
+    },
+    {
+      label: "Galacia",
+      counts: 4,
+      correctAns: ["galacia"],
+    },
+    {
+      label: "Roma",
+      counts: 3,
+      correctAns: ["roma", "rome"],
+    },
+    {
+      label: "Babilonya",
+      counts: 2,
+      correctAns: ["babilonya"],
+    },
+  ],
+  [
     {
       label: "Pedro",
-      counts: 2,
+      counts: 35,
       correctAns: ["pedro"],
     },
     {
-      label: "Jose",
-      counts: 1,
-      correctAns: ["jose"],
-    },
-  ],
-  [
-    {
-      label: "Kawikaan",
-      counts: 10,
-      correctAns: ["kawikaan"],
+      label: "Santiago",
+      counts: 25,
+      correctAns: ["santiago"],
     },
     {
-      label: "Awit",
-      counts: 8,
-      correctAns: ["awit"],
-    },
-    {
-      label: "Panaghoy",
-      counts: 2,
-      correctAns: ["panaghoy"],
-    },
-    {
-      label: "Esther",
-      counts: 4,
-      correctAns: ["esther"],
-    },
-    {
-      label: "Daniel",
-      counts: 5,
-      correctAns: ["daniel"],
-    },
-    {
-      label: "Marcos",
-      counts: 1,
-      correctAns: ["marcos"],
-    },
-  ],
-  [
-    {
-      label: "Maibigin",
-      counts: 11,
-      correctAns: ["love", "loving", "pag-ibig", "mapagmahal", "mahal"],
-    },
-    {
-      label: "Mapagmalasakit",
-      counts: 6,
-      correctAns: ["mapagmalasakit", "malasakit", "caring"],
-    },
-    {
-      label: "Mapagpatawad",
+      label: "juan",
       counts: 7,
       correctAns: ["mapagpatawad"],
     },
     {
-      label: "Makatarungan",
+      label: "Tomas",
       counts: 5,
-      correctAns: ["justice", "makatarungan", "katarungan", "patas"],
+      correctAns: ["tomas"],
     },
     {
-      label: "matulungin",
+      label: "Felipe",
       counts: 3,
-      correctAns: ["matulungin", "helpful"],
+      correctAns: ["Felipe"],
     },
     {
-      label: "makatuwiran",
+      label: "mateo",
       counts: 2,
       correctAns: ["makatwiran"],
+    },
+    {
+      label: "Andres",
+      counts: 2,
+      correctAns: ["andres"],
     },
   ],
 ];
 
 const VoiceRecognitionComponent: React.FC = () => {
-  const [disabled, setDisbled] = useState(true);
-  const [transcript, setTranscript] = useState<string>("");
   const [level, setLevel] = useState(0);
   const [current, setCurrent] = useState<any[]>([]);
   const [answers, setAnswers] = useState<string[]>([]);
   const [incorrect, setIncorrect] = useState(false);
-
-  const { transcript: currentTranscript } = useSpeechRecognition();
-
-  useEffect(() => {
-    setTranscript(currentTranscript);
-  }, [currentTranscript]);
+  const [answer, setAnswer] = useState("");
 
   useEffect(() => {
     setCurrent(items[level].sort((a, b) => b.counts - a.counts));
   }, [level]);
 
-  const startListening = () => {
-    if (!disabled) {
-      setDisbled(true);
-    } else {
-      setDisbled(false);
-      SpeechRecognition.startListening();
-      setTranscript(currentTranscript);
-    }
-  };
-
   const checkAnswer = () => {
     const correct = current.find(({ correctAns }) =>
-      correctAns.includes(transcript)
+      correctAns.includes(answer)
     );
     if (correct) {
-      setAnswers([...answers, transcript]);
+      setAnswers([...answers, answer]);
     } else {
       setIncorrect(true);
     }
@@ -159,7 +145,7 @@ const VoiceRecognitionComponent: React.FC = () => {
           </div>
         </div>
       ) : null}
-      <h1>Family Feud</h1>
+      <h1>Round {level + 1}</h1>
       <div className="answer-main-container">
         <div className="answer-container">
           {current.slice(0, 4).map(({ label, counts, correctAns }) => {
@@ -199,9 +185,11 @@ const VoiceRecognitionComponent: React.FC = () => {
 
       <div className="footer">
         <div className="buttons">
-          <button onClick={startListening}>
-            {disabled ? <BiMicrophoneOff /> : <BiMicrophone />}
-          </button>
+          <input
+            type="text"
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+          />
           <button onClick={() => checkAnswer()}>
             <BsFillPlayCircleFill />
           </button>
@@ -213,18 +201,6 @@ const VoiceRecognitionComponent: React.FC = () => {
           >
             <BiRightArrowAlt />
           </button>
-          <div className="user-answer">{transcript}</div>
-        </div>
-        <div className="score-board">
-          <div>
-            <p>TEAM A</p>
-            <input type="text" />
-          </div>
-          <div>VS</div>
-          <div>
-            <p>TEAM B</p>
-            <input type="text" />
-          </div>
         </div>
       </div>
     </div>
