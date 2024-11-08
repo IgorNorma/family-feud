@@ -8,71 +8,71 @@ const items = [
   [
     {
       label: "Israel",
-      counts: 31,
+      counts: 34,
       correctAns: ["Israel"],
     },
     {
       label: "Babilonya",
-      counts: 14,
+      counts: 26,
       correctAns: ["babilonya"],
     },
 
     {
       label: "Sirya",
-      counts: 12,
+      counts: 18,
       correctAns: ["sirya"],
     },
     {
       label: "Edom",
-      counts: 6,
+      counts: 10,
       correctAns: ["edom"],
     },
     {
       label: "Roma",
-      counts: 4,
+      counts: 6,
       correctAns: ["roma"],
     },
     {
       label: "Canaan",
-      counts: 2,
+      counts: 4,
       correctAns: ["canaan"],
     },
     {
       label: "Ninive",
-      counts: 1,
+      counts: 2,
       correctAns: ["ninive"],
     },
   ],
   [
     {
-      label: "India",
-      counts: 48,
-      correctAns: ["india"],
+      label: "David",
+      counts: 38,
+      correctAns: ["david"],
     },
     {
-      label: "Israel",
+      label: "Solomon",
       counts: 28,
-      correctAns: ["israel"],
+      correctAns: ["solomon"],
     },
     {
-      label: "Egypt",
+      label: "Hezekias",
       counts: 15,
-      correctAns: ["ehipto", "egypt"],
+      correctAns: ["hezekias"],
     },
     {
-      label: "Galacia",
+      label: "ahab",
+      counts: 10,
+      correctAns: ["ahab"],
+    },
+    {
+      label: "Jehosapat",
+      counts: 5,
+      correctAns: ["jehosapat"],
+    },
+    {
+      label: "Asa",
       counts: 4,
-      correctAns: ["galacia"],
-    },
-    {
-      label: "Roma",
-      counts: 3,
-      correctAns: ["roma", "rome"],
-    },
-    {
-      label: "Babilonya",
-      counts: 2,
-      correctAns: ["babilonya"],
+      correctAns: ["asa"],
     },
   ],
   [
@@ -110,6 +110,27 @@ const items = [
       label: "Andres",
       counts: 2,
       correctAns: ["andres"],
+    },
+  ],[
+    {
+      label: "Mateo",
+      counts: 40,
+      correctAns: ["mateo"],
+    },
+    {
+      label: "Lucas",
+      counts: 35,
+      correctAns: ["lucas"],
+    },
+    {
+      label: "juan",
+      counts: 15,
+      correctAns: ["juan"],
+    },
+    {
+      label: "Pablo",
+      counts: 10,
+      correctAns: ["pablo"],
     },
   ],
 ];
