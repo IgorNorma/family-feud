@@ -77,39 +77,24 @@ const items = [
   ],
   [
     {
-      label: "Pedro",
-      counts: 35,
-      correctAns: ["pedro"],
+      label: "Kean Caracute",
+      counts: 50,
+      correctAns: ["kean"],
     },
     {
-      label: "Santiago",
+      label: "Jason Bello",
       counts: 25,
-      correctAns: ["santiago"],
+      correctAns: ["jason"],
     },
     {
-      label: "juan",
-      counts: 7,
-      correctAns: ["mapagpatawad"],
+      label: "Joshan",
+      counts: 20,
+      correctAns: ["joshan"],
     },
     {
-      label: "Tomas",
+      label: "Ruben Bornilla",
       counts: 5,
-      correctAns: ["tomas"],
-    },
-    {
-      label: "Felipe",
-      counts: 3,
-      correctAns: ["Felipe"],
-    },
-    {
-      label: "mateo",
-      counts: 2,
-      correctAns: ["makatwiran"],
-    },
-    {
-      label: "Andres",
-      counts: 2,
-      correctAns: ["andres"],
+      correctAns: ["ruben"],
     },
   ],[
     {
