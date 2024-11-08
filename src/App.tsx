@@ -7,40 +7,40 @@ import "./index.css";
 const items = [
   [
     {
-      label: "Hosea",
-      counts: 61,
-      correctAns: ["hosea"],
+      label: "Israel",
+      counts: 31,
+      correctAns: ["Israel"],
     },
     {
-      label: "David",
+      label: "Babilonya",
       counts: 14,
-      correctAns: ["david"],
+      correctAns: ["babilonya"],
     },
 
     {
-      label: "Solomon",
+      label: "Sirya",
       counts: 12,
-      correctAns: ["solomon"],
+      correctAns: ["sirya"],
     },
     {
-      label: "Zedekias",
+      label: "Edom",
       counts: 6,
-      correctAns: ["zedekias"],
+      correctAns: ["edom"],
     },
     {
-      label: "Hezekias",
+      label: "Roma",
       counts: 4,
-      correctAns: ["hezekias"],
+      correctAns: ["roma"],
     },
     {
-      label: "Josias",
+      label: "Canaan",
       counts: 2,
-      correctAns: ["josias"],
+      correctAns: ["canaan"],
     },
     {
-      label: "Manases",
+      label: "Ninive",
       counts: 1,
-      correctAns: ["manases"],
+      correctAns: ["ninive"],
     },
   ],
   [
